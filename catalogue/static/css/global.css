@@ -1,0 +1,9 @@
+* {
+  --primary-color: #ff501a;
+  --secondary-color: #81e622;
+  --thirty-color: #22baec;
+}
+
+body {
+  margin: 0;
+}

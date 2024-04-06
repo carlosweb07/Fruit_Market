@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit Market</title>
+  <link rel="stylesheet" href="{% static 'css/global.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+  <nav>
+    <section class="nav-item">
+      <img src="{% static 'imgs/logo.png' %}" alt="Logo">
+      <h2>Fruit Market</h2>
+    </section>
+    <ul class="nav-item">
+      <li>
+        <a href="/">Home Page</a>
+      </li>
+      <li>
+        <a href="/catalogue">Catalogue</a>
+      </li>
+    </ul>
+  </nav>
+  <main>
+    <aside class="side-content">
+      <span class="fruits"></span>
+    </aside>
+    <section class="main-content">
+      {% block content %}
+      {% endblock %}
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,51 @@
+table {
+  width: 80%;
+  padding: 20px;
+  background-color: var(--primary-color);
+  margin: auto;
+  border-collapse: collapse;
+  font-size: 18px;
+}
+
+img {
+  width: 200px;
+}
+
+thead tr th {
+  padding: 20px;
+}
+
+.register {
+  text-align: center;
+  transition: .3s;
+}
+
+.register:hover {
+  background-color: var(--opaque-secondary-color);
+}
+
+.actions {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+button {
+  font-size: 16px;
+  margin: 0 5px;
+  padding: 10px;
+  background-color: var(--thirty-color);
+  border: 1px solid white;
+  border-radius: 10px;
+  transition: .3s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+.create {
+  margin-left: 70px;
+  margin-bottom: 20px;
+}

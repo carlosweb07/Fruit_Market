@@ -1,0 +1,19 @@
+.fruit {
+  display: flex;
+  align-items: center;
+  margin-left: 180px;
+}
+
+.fruit img {
+  width: 300px;
+  margin-right: 30px;
+}
+
+.fruit h2 {
+  font-size: 30px;
+}
+
+.fruit p {
+  font-weight: 500;
+  font-size: 18px;
+}

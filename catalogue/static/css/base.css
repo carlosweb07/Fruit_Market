@@ -1,4 +1,14 @@
+body {
+  background: url(../imgs/fondo.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
 nav {
+  position: fixed;
+  top: 0;
+  z-index: 2;
   background-color: var(--secondary-color);
   width: 100%;
   display: flex;
@@ -23,6 +33,7 @@ nav h2 {
   color: var(--primary-color);
   font-size: 30px;
   margin: 5px;
+  font-weight: 500;
 }
 
 nav a {
@@ -36,11 +47,18 @@ nav a {
   border-radius: 10px;
 }
 
+h1 {
+  text-align: center;
+  font-size: 30px;
+}
+
 main {
   display: flex;
 }
 
 aside {
+  position: fixed;
+  top: 100px;
   background-color: var(--primary-color);
   height: 100vh;
   width: 20%;
@@ -58,5 +76,8 @@ aside span {
 }
 
 .main-content {
-  margin: 20px;
+  width: 80%;
+  margin-top: 120px;
+  margin-left: 300px;
+  margin-right: 50px;
 }

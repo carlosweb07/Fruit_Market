@@ -1,7 +1,9 @@
 * {
   --primary-color: #ff501a;
-  --secondary-color: #81e622;
+  --secondary-color: #aae43f;
   --thirty-color: #22baec;
+
+  font-family: "Raleway", sans-serif;
 }
 
 body {

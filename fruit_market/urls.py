@@ -21,7 +21,9 @@ from catalogue import views as views_catalogue
 from users import views as views_user
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', views_catalogue.home_page),
-    path('login/', views_user.login_page)
+    path('admin/', admin.site.urls),
+    path('catalogue/', views_catalogue.catalogue_page),
+    path('fruit/<int:id>/', views_catalogue.fruit_page),
+    path('login/', views_user.login_page),
 ]

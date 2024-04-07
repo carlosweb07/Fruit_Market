@@ -1,5 +1,16 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% block content %}
-  <h1>Catalogue</h1>
+  <link rel="stylesheet" href="{% static 'css/catalogue.css' %}">
+  <h1>Catálogo</h1>
+  <div class="fruits">
+    {% for fruit in fruits %}
+      <div class="fruit">
+        <a href="/fruit/{{ fruit.id }}">
+          <img src="{% static fruit.img|make_list|slice:'17:'|join:'' %}" alt="fruta">
+          <h2>{{ fruit.name }}</h2>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

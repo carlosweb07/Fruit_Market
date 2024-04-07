@@ -20,7 +20,7 @@
 
 .fruit:hover {
   transform: scale(1.1);
-  background-color: var(--secondary-color);
+  background-color: var(--opaque-secondary-color);
 }
 
 .fruit:hover a {

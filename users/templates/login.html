@@ -1,5 +1,21 @@
 {% extends 'layouts/base_user.html' %}
 {% load static %}
 {% block content %}
-  <h1>Login Page</h1>
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+  <h1>INICIO DE SESION</h1>
+  <div class="login">
+  <form method="post">
+    <div class="login-item">
+      <label>Correo</label>
+      <input type="username" required>
+    </div>
+    <form method="post">
+      <div class="login-item">
+        <label>Contraseña</label>
+        <input type="password" required>
+      </div>
+      <button class="boton">Enviar</button>
+    </div> 
+
+  </form>
 {% endblock %}

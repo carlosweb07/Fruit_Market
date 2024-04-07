@@ -26,4 +26,5 @@ urlpatterns = [
     path('catalogue/', views_catalogue.catalogue_page),
     path('fruit/<int:id>/', views_catalogue.fruit_page),
     path('login/', views_user.login_page),
+    path('register/', views_user.register_page)
 ]

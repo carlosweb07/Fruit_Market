@@ -1,5 +1,24 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% block content %}
-  <h1>Index Page</h1>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <h1>FRUIT MARKET</h1>
+  <div class="presentacion">
+      <P>Supermercado especializado en la venta de frutas con la mejor calidad de sembrado y producción. Nos importa tu salud ya que las mismas son un producto alimenticio comestible que se obtiene de plantas o árboles y que se caracteriza por ser generalmente de sabor dulce. Frut, es el órgano procedente de la flor o de parte de ella que contiene las semillas y contribuye a diseminarlas. 
+      </P>
+      <p>Beneficios de las mismas:</p>
+      <ol>
+        <li>Vitaminas</li>
+        <li>Minerales</li>
+        <li>Grasas Sanas</li>
+        <li>proteina</li>
+        <li>Calcio</li>
+        <li>Fibra</li>
+      </ol>
+      <img src="{% static 'imgs/arbolito.jfif' %}" alt="arbolito">
+  </div>
+  <div>
+  </div>
+ 
+
 {% endblock %}

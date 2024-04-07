@@ -1,5 +1,23 @@
 {% extends 'layouts/base_user.html' %}
 {% load static %}
 {% block content %}
-  <h1>Register Page</h1>
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+  <h1>REGISTRO</h1>
+  <div class="login">
+  <form method="post">
+    <div class="login-item">
+      <label>Nombre</label>
+      <input type="username" required>
+    </div>
+    <div class="login-item">
+      <label>Correo</label>
+      <input type="email" required>
+    </div>
+    <div class="login-item">
+      <label>Contraseña</label>
+      <input type="password" required>
+    </div>
+    <button class="boton">Enviar</button>
+  </div>
+</form>
 {% endblock %}

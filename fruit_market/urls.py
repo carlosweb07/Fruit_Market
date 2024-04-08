@@ -29,4 +29,5 @@ urlpatterns = [
     path('fruit/<int:id>/', views_catalogue.fruit_page),
     path('login/', views_user.login_page),
     path('register/', views_user.register_page),
+    path('logout/', views_user.signout),
 ]

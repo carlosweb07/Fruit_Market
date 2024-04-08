@@ -5,7 +5,6 @@
     padding: 100px;
     border-radius: 10px;
     letter-spacing: 3px;
-    
 }
 
 .login input {
@@ -30,8 +29,22 @@
 }
 
 .error{
-    background-color: darkred;
+    color: darkred;
     text-align: center;
     width: 100%;
     margin: auto;
+}
+
+.redireccion {
+    margin-top: 10px;
+}
+
+.redireccion a {
+    color: var(--thirty-color);
+    letter-spacing: 0;
+    transition: .3s;
+}
+
+.redireccion a:hover {
+    color: var(--secondary-color);
 }

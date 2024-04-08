@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -19,15 +18,13 @@ def login_page(request):
     if request.method == 'GET':
         return render(request, "login.html")
     else:
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
-        print(email,password)
-        user = authenticate(request, email=email, password=password)  
-        print(user)
+        user = authenticate(request, username=username, password=password)  
         if user is not None:
             login(request, user)  
             print('listo')
-            return redirect('/home') 
+            return redirect('/catalogue') 
         else: 
             return render(request, "login.html", {'error': 'Correo o clave invalida'})
 
@@ -49,6 +46,10 @@ def register_page(request):
             "error": "El usuario ya existe"
         })
       
+def signout(request):
+  logout(request)
+  return redirect("/")
+
 def create_page(request):
    return render(request, "create.html")
 

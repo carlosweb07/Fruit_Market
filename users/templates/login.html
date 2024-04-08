@@ -8,8 +8,8 @@
     <b class="error">{{ error }}</b>
     <form method="post">
       <div class="login-item">
-        <label>Correo</label>
-        <input name="email" type="email" required>
+        <label>Nombre de usuario</label>
+        <input name="username" type="text" required>
       </div>
       <div class="login-item">
         <label>Contraseña</label>
@@ -17,6 +17,9 @@
       </div>
       {% csrf_token %}
       <button type="submit" class="boton">Enviar</button> 
+      <div class="redireccion">
+        <a href="/register">Si no tienes cuenta, registrate!</a>
+      </div>
     </form>
-  </div>
+  </div> 
 {% endblock %}

@@ -48,3 +48,12 @@ def register_page(request):
         return render(request, "register.html", {
             "error": "El usuario ya existe"
         })
+      
+def create_page(request):
+   return render(request, "create.html")
+
+def edit_page(request, id):
+    fruit = Fruit.objects.get(id=id)
+    return render(request, "edit.html", {
+      "fruit": fruit
+    })

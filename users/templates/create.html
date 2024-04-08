@@ -1,0 +1,34 @@
+{% extends 'layouts/base_user.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <h1>Formulario</h1>
+
+    <div class="login">
+        <b class="error">{{ error }}</b>
+        <form method="post">
+            <div class="login-item">
+                <label>Imagen</label>
+                <input name="imagen" type="file" class="boton" required>
+            </div>
+            <div class="login-item">
+                <label>Nombre</label>
+                <input name="nombre" type="text" required>
+            </div>
+            <div class="login-item">
+                <label>Categoría</label>
+                <input name="categoria" type="text" required>
+            </div>
+            <div class="login-item">
+                <label>Unidades disponibles</label>
+                <input name="unidades_disponibles" type="number" required>
+            </div>
+            <div class="login-item">
+                <label>Precio</label>
+                <input name="precio" type="number" required>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="boton">Enviar</button> 
+        </form>
+    </div>
+{% endblock %}

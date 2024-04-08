@@ -1,23 +1,22 @@
 {% extends 'layouts/base_user.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/form.css' %}">
+  <link rel="stylesheet" href="{% static 'css/form.css' %}">
   <h1>INICIO DE SESION</h1>
   
   <div class="login">
     <b class="error">{{ error }}</b>
-  <form method="post">
-    <div class="login-item">
-      <label>Correo</label>
-      <input name="email" type="email" required>
-    </div>
     <form method="post">
+      <div class="login-item">
+        <label>Correo</label>
+        <input name="email" type="email" required>
+      </div>
       <div class="login-item">
         <label>Contraseña</label>
         <input name="password" type="password" required>
       </div>
       {% csrf_token %}
-      <button type="submit" class="boton">Enviar</button>
-    </div> 
-  </form>
+      <button type="submit" class="boton">Enviar</button> 
+    </form>
+  </div>
 {% endblock %}

@@ -25,6 +25,8 @@ urlpatterns = [
     path('administrator/', admin.site.urls),
     path('', views_catalogue.home_page),
     path('admin/', views_user.admin_page),
+    path('create/', views_user.create_page),
+    path('edit/<int:id>/', views_user.edit_page),
     path('catalogue/', views_catalogue.catalogue_page),
     path('fruit/<int:id>/', views_catalogue.fruit_page),
     path('login/', views_user.login_page),

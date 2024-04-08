@@ -6,26 +6,38 @@
 
     <div class="login">
         <b class="error">{{ error }}</b>
-        <form method="post">
+        <form enctype="multipart/form-data" method="post">
             <div class="login-item">
                 <label>Imagen</label>
-                <input name="imagen" type="file" class="boton" required>
+                <input name="img" type="file" required>
             </div>
             <div class="login-item">
                 <label>Nombre</label>
-                <input name="nombre" type="text" required value="{{ fruit.name }}">
+                <input name="name" type="text" required value="{{ fruit.name }}">
             </div>
             <div class="login-item">
                 <label>Categoría</label>
-                <input name="categoria" type="text" required value="{{ fruit.category }}">
+                <select name="category" required>
+                    {% for category in categories %}
+                        {% if category.id == fruit.category.id %}
+                            <option selected value="{{ category.id }}">
+                                {{ category.name }}
+                            </option>
+                        {% else %}
+                            <option value="{{ category.id }}">
+                                {{ category.name }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
             </div>
             <div class="login-item">
                 <label>Unidades disponibles</label>
-                <input name="unidades_disponibles" type="number" required value="{{ fruit.available_units }}">
+                <input name="available_units" type="number" required value="{{ fruit.available_units }}">
             </div>
             <div class="login-item">
                 <label>Precio</label>
-                <input name="precio" type="number" required value="{{ fruit.price }}">
+                <input name="price" type="number" step="0.01" required value="{{ fruit.price }}">
             </div>
             {% csrf_token %}
             <button type="submit" class="boton">Editar</button> 

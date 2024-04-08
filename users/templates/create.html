@@ -6,26 +6,32 @@
 
     <div class="login">
         <b class="error">{{ error }}</b>
-        <form method="post">
+        <form enctype="multipart/form-data" method="post">
             <div class="login-item">
                 <label>Imagen</label>
-                <input name="imagen" type="file" class="boton" required>
+                <input name="img" type="file" required>
             </div>
             <div class="login-item">
                 <label>Nombre</label>
-                <input name="nombre" type="text" required>
+                <input name="name" type="text" required>
             </div>
             <div class="login-item">
                 <label>Categoría</label>
-                <input name="categoria" type="text" required>
+                <select name="category" required>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">
+                            {{ category.name }}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="login-item">
                 <label>Unidades disponibles</label>
-                <input name="unidades_disponibles" type="number" required>
+                <input name="available_units" type="number" required>
             </div>
             <div class="login-item">
                 <label>Precio</label>
-                <input name="precio" type="number" required>
+                <input name="price" type="number" required>
             </div>
             {% csrf_token %}
             <button type="submit" class="boton">Enviar</button> 

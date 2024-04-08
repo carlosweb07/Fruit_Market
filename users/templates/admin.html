@@ -2,9 +2,10 @@
 {% load static %}
 {% block content %}
   <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+  <link rel="stylesheet" href="{% static 'css/modal.css' %}">
   <h1>Administrador</h1>
   <table>
-    <button class="create">Crear una fruta</button>
+    <a href="/create" id="create" class="btn">Crear una fruta</a>
     <thead>
       <tr>
         <th>Id</th>
@@ -25,15 +26,16 @@
           </td>
           <td>{{ fruit.name }}</td>
           <td>{{ fruit.category }}</td>
-          <td>{{ fruit.avaible_units }}</td>
+          <td>{{ fruit.available_units }}</td>
           <td>{{ fruit.price }}</td>
           <td>
             <div class="actions">
-              <button>Editar</button>
-              <button>Eliminar</button>
+              <a class="btn" href="/edit/{{ fruit.id }}">Editar</a>
+              <a class="btn" href="#modal-{{ fruit.id }}">Eliminar</a>
             </div>
           </td>
         </tr>
+        {% include 'components/confirm.html' with fruit=fruit %}
       {% endfor %}
     </tbody>
   </table>

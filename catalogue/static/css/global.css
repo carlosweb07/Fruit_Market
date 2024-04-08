@@ -3,7 +3,9 @@
   --secondary-color: #aae43f;
   --thirty-color: #22baec;
 
+  --opaque-primary-color: #ff4f1a85;
   --opaque-secondary-color: #aae43f93;
+  --opaque-thirty-color: #00ffff57;
 
   font-family: "Raleway", sans-serif;
 }

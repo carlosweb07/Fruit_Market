@@ -1,5 +1,5 @@
 .presentacion{
-    background-color:rgba(0, 255, 255, 0.342);
+    background-color:var(--opaque-thirty-color);
     color:white;
     font-size: 20px;
     padding: 5px;

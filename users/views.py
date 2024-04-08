@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
-from catalogue.models import Fruit
+from catalogue.models import Fruit, Category
 
 # Create your views here.
 @login_required
@@ -51,10 +51,48 @@ def signout(request):
   return redirect("/")
 
 def create_page(request):
-   return render(request, "create.html")
+  if request.method == "GET":
+      categories = Category.objects.all()
+      return render(request, "create.html", {
+        "categories": categories
+      })
+  else:
+      category = Category.objects.get(id=request.POST["category"])
+      
+      fruit = Fruit()
+      
+      fruit.name = request.POST["name"]
+      fruit.img = request.FILES["img"]
+      fruit.category = category
+      fruit.available_units = request.POST["available_units"]
+      fruit.price = request.POST["price"]
+      
+      fruit.save()
+      return redirect("/admin")
 
 def edit_page(request, id):
-    fruit = Fruit.objects.get(id=id)
-    return render(request, "edit.html", {
-      "fruit": fruit
-    })
+    if request.method == "GET":
+      fruit = Fruit.objects.get(id=id)
+      categories = Category.objects.all()
+      return render(request, "edit.html", {
+        "fruit": fruit,
+        "categories": categories
+      })
+    else:
+      fruit = Fruit.objects.get(id=id)
+      category = Category.objects.get(id=request.POST["category"])
+      
+      fruit.name = request.POST["name"]
+      fruit.img = request.FILES["img"]
+      fruit.category = category
+      fruit.available_units = request.POST["available_units"]
+      fruit.price = request.POST["price"]
+      fruit.save()
+      
+      return redirect("/admin")
+    
+def delete(request, id):
+   fruit = Fruit.objects.get(id=id)
+   fruit.delete()
+
+   return redirect("/admin")

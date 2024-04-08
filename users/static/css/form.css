@@ -7,9 +7,11 @@
     letter-spacing: 3px;
 }
 
-.login input {
+.login input, .login select {
     width: 100%;
     outline: none;
+    font-size: 17px;
+    padding: 3px;
 }
 
 .login-item {

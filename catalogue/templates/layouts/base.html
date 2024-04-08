@@ -22,10 +22,13 @@
       <li>
         <a href="/">Home</a>
       </li>
-      <li>
-        <a href="/catalogue">Catálogo</a>
-      </li>
       {% if user.is_authenticated %}
+        <li>
+          <a href="/catalogue">Catálogo</a>
+        </li>
+        <li>
+          <a href="/admin">Administrador</a>
+        </li>
         <li>
           <a href="/logout">Cerrar Sesión</a>
         </li>

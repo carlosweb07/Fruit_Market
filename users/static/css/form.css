@@ -28,3 +28,10 @@
     cursor:pointer;
     font-size: 15px;
 }
+
+.error{
+    background-color: darkred;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}

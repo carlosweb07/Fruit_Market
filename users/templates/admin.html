@@ -25,7 +25,7 @@
             <img src="{% static fruit.img|make_list|slice:'17:'|join:'' %}" alt="fruta">
           </td>
           <td>{{ fruit.name }}</td>
-          <td>{{ fruit.category }}</td>
+          <td>{{ fruit.category.name }}</td>
           <td>{{ fruit.available_units }}</td>
           <td>{{ fruit.price }}</td>
           <td>

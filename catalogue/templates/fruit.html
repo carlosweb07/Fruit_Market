@@ -7,8 +7,8 @@
     <img src="{% static fruit.img|make_list|slice:'17:'|join:'' %}" alt="fruta">
     <div class="fruit-details">
       <h2>{{ fruit.name }}</h2>
-      <p>Categoría: {{ fruit.category }}</p>
-      <p>Unidades disponibles: {{ fruit.avaible_units }}</p>
+      <p>Categoría: {{ fruit.category.name }}</p>
+      <p>Unidades disponibles: {{ fruit.available_units }}</p>
       <p>Precio: {{ fruit.price }}$</p>
     </div>
   </div>

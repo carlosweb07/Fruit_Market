@@ -25,9 +25,15 @@ urlpatterns = [
     path('', views_catalogue.home_page),
     
     path('admin/', views_user.admin_page),
+    path('gestor/', views_user.gestor_page),
+    
+    path('export/fruits/', views_user.export_fruits),
+    path('export/users/', views_user.export_users),
+    
     path('create/', views_user.create_page),
     path('edit/<int:id>/', views_user.edit_page),
     path('delete/<int:id>/', views_user.delete),
+    
     path('login/', views_user.login_page),
     path('register/', views_user.register_page),
     path('logout/', views_user.signout),

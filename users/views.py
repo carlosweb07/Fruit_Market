@@ -96,3 +96,12 @@ def delete(request, id):
    fruit.delete()
 
    return redirect("/admin")
+
+def gestor_page(request):
+  return render(request, "gestor.html")
+
+def export_fruits(request):
+  return redirect("/gestor")
+
+def export_users(request):
+  return redirect("/gestor")

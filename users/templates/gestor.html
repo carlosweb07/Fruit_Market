@@ -1,0 +1,10 @@
+{% extends 'layouts/base_user.html' %}
+{% load static %}
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/gestor.css' %}">
+  <h1>Página de gestor</h1>
+  <div class="btn_container">
+    <a href="/export/fruits">Exportar frutas</a>
+    <a href="/export/users">Exportar usuarios</a>
+  </div>
+{% endblock %}

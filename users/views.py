@@ -1,19 +1,33 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 from catalogue.models import Fruit, Category
 
+def is_admin(user):
+    return user.groups.filter(name="Administradores").exists()
+
+def is_manager(user):
+    return user.groups.filter(name="Gestor").exists()
+
+def is_user(user):
+    return user.groups.filter(name="Usuario").exists()
+
+
 # Create your views here.
 @login_required
+@user_passes_test(is_admin)
 def admin_page(request):
   fruits = Fruit.objects.all()
   return render(request, "admin.html", {
     "fruits": fruits
   })
+  
 
+##visitores
 def login_page(request):
     if request.method == 'GET':
         return render(request, "login.html")
@@ -38,6 +52,8 @@ def register_page(request):
             request.POST["email"],
             request.POST["password"],
           )
+          viewer_group = Group.objects.create(name="Usuarios")
+          user.groups.add(viewer_group)
           user.save()
           login(request, user)
           return redirect('/login') 
@@ -50,6 +66,8 @@ def signout(request):
   logout(request)
   return redirect("/")
 
+
+@user_passes_test(is_admin)
 def create_page(request):
   if request.method == "GET":
       categories = Category.objects.all()
@@ -70,6 +88,7 @@ def create_page(request):
       fruit.save()
       return redirect("/admin")
 
+@user_passes_test(is_admin)
 def edit_page(request, id):
     if request.method == "GET":
       fruit = Fruit.objects.get(id=id)
@@ -90,18 +109,29 @@ def edit_page(request, id):
       fruit.save()
       
       return redirect("/admin")
+      
     
+@user_passes_test(is_admin)
 def delete(request, id):
    fruit = Fruit.objects.get(id=id)
    fruit.delete()
 
    return redirect("/admin")
+   
 
+
+@user_passes_test(is_manager)
 def gestor_page(request):
   return render(request, "gestor.html")
+  
 
+@user_passes_test(is_manager)
 def export_fruits(request):
   return redirect("/gestor")
+  
 
+@user_passes_test(is_manager)
 def export_users(request):
   return redirect("/gestor")
+  
+

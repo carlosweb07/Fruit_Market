@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,  user_passes_test
 
 from .models import Fruit
 
 def home_page(request):
   return render(request, "index.html")
 
+###visitor
 @login_required
 def catalogue_page(request):
   fruits = Fruit.objects.all()

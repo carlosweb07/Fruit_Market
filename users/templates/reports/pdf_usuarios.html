@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: url("https://i.ibb.co/FJj9N3k/fondo.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+        }
+        table {
+            background-color: rgba(248, 72, 18, 0.502);
+            width: 60%;
+            padding: 20px;
+            margin: auto;
+            border-collapse: collapse;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        th{
+            background-color:rgba(172, 255, 47, 0.74);
+        }
+
+        tr {
+            font-size: 20px;
+        }
+        
+        td {
+            padding: 20px 0;
+        }
+          
+        th {
+            padding: 20px;
+        }
+
+        tr:hover{
+            background-color: #aae43fb7;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.groups.all() }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

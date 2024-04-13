@@ -3,8 +3,10 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-
+from jinja2 import Environment, FileSystemLoader
 from catalogue.models import Fruit, Category
+
+import pdfkit
 
 # Create your views here.
 @login_required
@@ -101,7 +103,43 @@ def gestor_page(request):
   return render(request, "gestor.html")
 
 def export_fruits(request):
+  fruits = Fruit.objects.all()
+  
+  config = pdfkit.configuration(wkhtmltopdf=r"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+  
+  env = Environment(loader=FileSystemLoader("users/templates/reports"))
+  template = env.get_template("pdf_frutas.html")
+  
+  html = template.render({
+    "fruits": fruits
+  })
+  
+  pdfkit.from_string(
+    html,
+    "report_fruits.pdf",
+    options={"enable-local-file-access": ""},
+    configuration=config
+  )
+  
   return redirect("/gestor")
 
 def export_users(request):
+  users = User.objects.all()
+  
+  config = pdfkit.configuration(wkhtmltopdf=r"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+  
+  env = Environment(loader=FileSystemLoader("users/templates/reports"))
+  template = env.get_template("pdf_usuarios.html")
+  
+  html = template.render({
+    "users": users
+  })
+  
+  pdfkit.from_string(
+    html,
+    "report_users.pdf",
+    options={"enable-local-file-access": ""},
+    configuration=config
+  )
+  
   return redirect("/gestor")

@@ -23,11 +23,17 @@
         <a href="/">Home</a>
       </li>
       {% if user.is_authenticated %}
+        {% if user.groups.all.0.name == 'Administrador' %}
+          <li>
+            <a href="/admin">Administracion</a>
+          </li>
+        {% elif user.groups.all.0.name == 'Gestor' %}
+          <li>
+            <a href="/gestor">Reportes</a>
+          </li>
+        {% endif %}
         <li>
           <a href="/catalogue">Catálogo</a>
-        </li>
-        <li>
-          <a href="/admin">Administrador</a>
         </li>
         <li>
           <a href="/logout">Cerrar Sesión</a>

@@ -4,30 +4,22 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
 
-
+from jinja2 import Environment, FileSystemLoader
 from catalogue.models import Fruit, Category
 
-def is_admin(user):
-    return user.groups.filter(name="Administradores").exists()
+import pdfkit
 
-def is_manager(user):
-    return user.groups.filter(name="Gestor").exists()
-
-def is_user(user):
-    return user.groups.filter(name="Usuario").exists()
-
+from .validators import is_admin, is_manager
 
 # Create your views here.
 @login_required
-@user_passes_test(is_admin)
+@user_passes_test(is_admin, login_url="/")
 def admin_page(request):
   fruits = Fruit.objects.all()
   return render(request, "admin.html", {
     "fruits": fruits
   })
   
-
-##visitores
 def login_page(request):
     if request.method == 'GET':
         return render(request, "login.html")
@@ -37,8 +29,7 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)  
         if user is not None:
             login(request, user)  
-            print('listo')
-            return redirect('/catalogue') 
+            return redirect('/') 
         else: 
             return render(request, "login.html", {'error': 'Correo o clave invalida'})
 
@@ -52,10 +43,9 @@ def register_page(request):
             request.POST["email"],
             request.POST["password"],
           )
-          viewer_group = Group.objects.create(name="Usuarios")
+          viewer_group = Group.objects.get(name="Usuario")
           user.groups.add(viewer_group)
           user.save()
-          login(request, user)
           return redirect('/login') 
       except:
         return render(request, "register.html", {
@@ -66,8 +56,8 @@ def signout(request):
   logout(request)
   return redirect("/")
 
-
-@user_passes_test(is_admin)
+@login_required
+@user_passes_test(is_admin, login_url="/")
 def create_page(request):
   if request.method == "GET":
       categories = Category.objects.all()
@@ -88,7 +78,8 @@ def create_page(request):
       fruit.save()
       return redirect("/admin")
 
-@user_passes_test(is_admin)
+@login_required
+@user_passes_test(is_admin, login_url="/")
 def edit_page(request, id):
     if request.method == "GET":
       fruit = Fruit.objects.get(id=id)
@@ -110,8 +101,8 @@ def edit_page(request, id):
       
       return redirect("/admin")
       
-    
-@user_passes_test(is_admin)
+@login_required
+@user_passes_test(is_admin, login_url="/")
 def delete(request, id):
    fruit = Fruit.objects.get(id=id)
    fruit.delete()
@@ -119,19 +110,53 @@ def delete(request, id):
    return redirect("/admin")
    
 
-
-@user_passes_test(is_manager)
+@login_required
+@user_passes_test(is_manager, login_url="/")
 def gestor_page(request):
   return render(request, "gestor.html")
   
-
-@user_passes_test(is_manager)
+@login_required
+@user_passes_test(is_manager, login_url="/")
 def export_fruits(request):
+  fruits = Fruit.objects.all()
+  
+  config = pdfkit.configuration(wkhtmltopdf=r"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+  
+  env = Environment(loader=FileSystemLoader("users/templates/reports"))
+  template = env.get_template("pdf_frutas.html")
+  
+  html = template.render({
+    "fruits": fruits
+  })
+  
+  pdfkit.from_string(
+    html,
+    "report_fruits.pdf",
+    options={"enable-local-file-access": ""},
+    configuration=config
+  )
+  
   return redirect("/gestor")
   
-
-@user_passes_test(is_manager)
+@login_required
+@user_passes_test(is_manager, login_url="/")
 def export_users(request):
-  return redirect("/gestor")
+  users = User.objects.all()
   
-
+  config = pdfkit.configuration(wkhtmltopdf=r"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+  
+  env = Environment(loader=FileSystemLoader("users/templates/reports"))
+  template = env.get_template("pdf_usuarios.html")
+  
+  html = template.render({
+    "users": users
+  })
+  
+  pdfkit.from_string(
+    html,
+    "report_users.pdf",
+    options={"enable-local-file-access": ""},
+    configuration=config
+  )
+  
+  return redirect("/gestor")

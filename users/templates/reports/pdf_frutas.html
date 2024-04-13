@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: url("https://i.ibb.co/FJj9N3k/fondo.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            background-color: rgba(248, 72, 18, 0.502);
+            width: 60%;
+            padding: 20px;
+            margin: auto;
+            border-collapse: collapse;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        th{
+            background-color:rgba(172, 255, 47, 0.74);
+        }
+
+        tr {
+            font-size: 20px;
+        }
+
+        img {
+            width: 170px;
+        }
+
+        th {
+            padding: 20px;
+        }
+
+        td {
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Unidades disponibles</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fruit in fruits %}
+                <tr>
+                    <td>{{ fruit.id }}</td>
+                    <td>
+                        <img src="C:/Users/camil/OneDrive/Documentos/Joshua's%20files/university_files/electiva/Fruit_Market/{{ fruit.img }}" alt="frutas">
+                    </td>
+                    <td>{{ fruit.name }}</td>
+                    <td>{{ fruit.category.name }}</td>
+                    <td>{{ fruit.available_units }}</td>
+                    <td>{{ fruit.price }}$</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
